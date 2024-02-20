@@ -153,7 +153,7 @@ def main():
     model = model.to(device)
 
     print(args)
-    print('The recpetive field size is', model.receptive_field)
+    print('The receptive field size is', model.receptive_field)
     nParams = sum([p.nelement() for p in model.parameters()])
     print('Number of model parameters is', nParams, flush=True)
 
