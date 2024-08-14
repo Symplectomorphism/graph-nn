@@ -182,6 +182,7 @@ def main():
             print(
                 '| end of epoch {:3d} | time: {:5.2f}s | train_loss {:5.4f} | valid rse {:5.4f} | valid rae {:5.4f} | valid corr  {:5.4f}'.format(
                     epoch, (time.time() - epoch_start_time), train_loss, val_loss, val_rae, val_corr), flush=True)
+            print(torch.round(model.gc(model.idx), decimals=4))
             # Save the model if the validation loss is the best we've seen so far.
 
             if val_loss < best_val:
