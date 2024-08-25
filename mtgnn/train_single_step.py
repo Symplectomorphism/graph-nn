@@ -143,6 +143,7 @@ torch.set_num_threads(3)
 def main():
 
     Data = DataLoaderS(args.data, 0.6, 0.2, device, args.horizon, args.seq_in_len, args.normalize)
+    # Data = DataLoaderS(args.data, 0.8, 0.0, device, args.horizon, args.seq_in_len, args.normalize)
 
     model = gtnet(args.gcn_true, args.buildA_true, args.gcn_depth, args.num_nodes,
                   device, dropout=args.dropout, subgraph_size=args.subgraph_size,
