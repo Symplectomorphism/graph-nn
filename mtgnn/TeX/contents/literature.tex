@@ -1,11 +1,72 @@
 \section{Literature review}
 \label{sec:litreview}
-The stock market plays a vital role in the economy of nations, serving as the primary platform for global capital exchange. Hence, the success of the stock market has a substantial impact on the overall state of the national economy. Investors in the stock market strive to maximize their earnings by analyzing market information.  Therefore, people might exploit the financial market using accurate models to forecast the stock price, influenced by macroeconomic elements and numerous other factors ~\citep{gao2020application}. 
-Traditionally, the efficient market hypothesis also argues that future stock prices can be predicted using historical stock data ~\citep{fama1970efficient, shahi2020stock}. However, predicting stock index prices has long been a difficult task for professionals in the financial industry and related fields, mainly due to the presence of non-linearity, volatility, and noise characteristics. Thus, improving the precision of stock index price prediction and obtaining an accurate prediction is still a much-debated topic ~\citep{binkowski2018autoregressive}. In time, several traditional statistical models have been used to predict stock prices using historical data ~\citep{jarrett2011arima, tsai2012relationship, mensi2014global, sahoo2015stock, cakra2015stock, suharsono2017comparison, ma2018investor, izzeldin2019forecasting, tulcanaza2019determinants, ning2019stock}. 
+%
+The stock market plays a vital role in the economy of nations, serving as the
+primary platform for global capital exchange. The course a particular stock
+market takes has a substantial impact on the overall state of that nation's
+economy. Investors in the stock market strive to maximize their earnings by
+analyzing the market information and taking actions in
+response~\citep{gao2020application}. Efficient market
+hypothesis argues that future stock prices can be predicted using
+historical stock data ~\citep{fama1970efficient, shahi2020stock}. However,
+predicting stock index prices has long been a difficult task for professionals
+in the financial industry and related fields, mainly due to the presence of
+non-linearity, volatility, and noise characteristics. Thus, improving the
+precision of stock index price prediction and obtaining an accurate prediction
+is still a much-debated topic ~\citep{binkowski2018autoregressive}. 
 
-In the last 20 years, the rise of computational intelligence has led to the development of advanced models \textit{(machine learning, deep-learning, and hybrid models)} for stock market forecasting. Instead of traditional statistical models that can only consider linear structures like autoregressive integrated moving average (ARIMA), vector autoregressive (VAR), plenty of new techniques such as Bayesian networks, fuzzy neural systems, genetic algorithms, recurrent neural networks (RNN), convolutional neural networks (CNN), and long-short term memory (LSTM) have been suggested by numerous researchers ~\citep{cheng2010hybrid, karazmodeh2013stock, chen2015hybrid, chong2017deep, hiransha2018nse, cao2020multiobjective, nikou2019stock, hargreaves2020stock, shahi2020stock, setiani2021prediction, pahlawan2021stock, alkhatib2022new, nasiri2023multi}. 
+Over the
+last decades, several traditional statistical models have been used to predict
+stock prices using historical data ~\citep{jarrett2011arima,
+tsai2012relationship, mensi2014global, sahoo2015stock, cakra2015stock,
+suharsono2017comparison, ma2018investor, izzeldin2019forecasting,
+tulcanaza2019determinants,
+ning2019stock}. 
+In the last 20 years, the rise of computational intelligence has led to the
+development of advanced models \textit{(machine learning, deep-learning, and
+hybrid models)} for stock market forecasting. Instead of traditional statistical
+models that can only consider linear structures like autoregressive integrated
+moving average (ARIMA), vector autoregressive (VAR), plenty of new techniques
+such as Bayesian networks, fuzzy neural systems, genetic algorithms, recurrent
+neural networks (RNN), convolutional neural networks (CNN), and long-short term
+memory (LSTM) have been suggested by numerous researchers
+~\citep{cheng2010hybrid, karazmodeh2013stock, chen2015hybrid, chong2017deep,
+hiransha2018nse, cao2020multiobjective, nikou2019stock, hargreaves2020stock,
+shahi2020stock, setiani2021prediction, pahlawan2021stock, alkhatib2022new,
+nasiri2023multi}. 
 
-In addition to all these, in the last five years, the use of graph neural networks in stock price prediction has gained significant attention. ~\cite{deng2019knowledge} introduced a knowledge-driven temporal convolutional network (KDTCN) for stock trend prediction and explanation, emphasizing the importance of knowledge-driven events in predicting abrupt changes. ~\cite{long2020integrated} integrated deep learning and knowledge graph techniques to predict stock price trends in the Chinese stock exchange market. ~\cite{sawhney2020spatiotemporal} introduced the spatio-temporal hypergraph convolution network (STHGCN) for stock movement forecasting, highlighting its applications in quantitative trading and investment decision-making. Furthermore, ~\cite{sawhney2020deep} proposed a deep attentive learning architecture for stock movement prediction, leveraging financial data, social media, and inter-stock relationships through a graph neural network. ~\cite{wu2020connecting} discussed a novel approach to multivariate time series forecasting using graph neural networks (MTGNN). ~\cite{chen2021novel} introduced a graph convolutional feature based convolutional neural network (GC-CNN) model for stock trend prediction, demonstrating superior performance using Chinese stock data. ~\cite{hou2021st} developed the ST-trader model, a spatio-temporal deep neural network for modeling stock market movement, emphasizing the incorporation of inter-connections between firms to forecast stock prices. Lastly, ~\cite{sawhney2021exploring} explored the scale-free nature of stock markets and inter-stock correlations, proposing HyperStockGAT as a model for stock selection based on scale-free graph-based learning. These studies collectively highlight the advancements in utilizing graph neural networks for stock price prediction, emphasizing the importance of incorporating various data sources and methodologies to enhance prediction accuracy and decision-making in financial markets.
+The last five years has seen the use of graph neural
+networks in stock price prediction.~\cite{deng2019knowledge} introduced a knowledge-driven temporal convolutional
+network (KDTCN) for stock trend prediction and explanation, emphasizing the
+importance of knowledge-driven events in predicting abrupt changes.
+~\cite{long2020integrated} integrated deep learning and knowledge graph
+techniques to predict stock price trends in the Chinese stock exchange market.
+~\cite{sawhney2020spatiotemporal} introduced the spatio-temporal hypergraph
+convolution network (STHGCN) for stock movement forecasting, highlighting its
+applications in quantitative trading and investment decision-making.
+~\cite{sawhney2020deep} proposed a deep attentive learning
+architecture for stock movement prediction, leveraging financial data, social
+media, and inter-stock relationships through a graph neural network.
+~\cite{wu2020connecting} discussed a novel approach to multivariate time series
+forecasting using graph neural networks (MTGNN). ~\cite{chen2021novel}
+introduced a graph convolutional feature based convolutional neural network
+(GC-CNN) model for stock trend prediction, demonstrating superior performance
+using Chinese stock data. ~\cite{hou2021st} developed the ST-trader model, a
+spatio-temporal deep neural network for modeling stock market movement,
+emphasizing the incorporation of inter-connections between firms to forecast
+stock prices. Lastly, ~\cite{sawhney2021exploring} explored the scale-free
+nature of stock markets and inter-stock correlations, proposing HyperStockGAT as
+a model for stock selection based on scale-free graph-based learning. These
+studies collectively highlight the effectiveness of graph neural networks in 
+predicting stock prices by capturing complex, non-linear relationships to 
+enhance accuracy and facilitating decision making in financial markets.
 
-Building on ~\cite{wu2020connecting}, this study for the first time employs a GNN framework-MTGNN, which can automatically extract the dependencies are not known in advance, to MINT and G7 countries' stock market indices. The success of the MTGNN method (i) at capturing complex, non-linear relationships over time between variables by representing them as nodes in a graph, (ii) obtaining accurate predictions ~\cite{wu2020connecting, cui2021metro, he2022multivariate, liu2022multivariate, jin2022multivariate, chen2022multi, chen2023multi}, and (iii) the thought of the countries in the MINT and G7 economic blocs naturally can be represented as a graph, (iv) the high possibility of these countries involving complex, non-linear economic interactions and (v) these interactions between countries is critical to making accurate predictions caused to prefer the MTGNN over other methods.
+Following~\cite{wu2020connecting}, this study employs the MTGNN framework  to
+automatically extract the dependencies in the stock market indices of MINT and
+G7 countries from raw time series data. It has been shown that MTGNN is good at 
+capturing complex, non-linear relationships between variables by representing
+them as nodes in a graph, which paves the way to making accurate predictions
+~\cite{wu2020connecting, cui2021metro, he2022multivariate,
+liu2022multivariate, jin2022multivariate, chen2022multi, chen2023multi} with 
+graph convolution operations.
 
