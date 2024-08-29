@@ -1,12 +1,71 @@
 \section{Introduction}
 \label{sec:intro}
 %
-In the early 2010s, four countries attracted the attention of economists with their highly promising economies, and a new acronym, MINT: Mexico, Indonesia, Nigeria, and T\"{u}rkiye, emerged ~\citep{durotoye2014mint}. When the acronym was first suggested by Jim O'Neill, common characteristics of MINT countries were (i) geographical positions \textit{(Mexico sits next to the USA and belongs to the North American Free Trade Agreement (NAFTA), Indonesia lies at the centre of South East Asia, T\"{u}rkiye is connected to both the West and East, while Nigeria is on the coast of Africa surrounded by future trading partners)}, (ii) large populations \textit{(primarily under 30)}, (iii) rapid economic growth potential, (iv) a developing middle class, and (v) high levels of entrepreneurship ~\citep{Jim, Newland, Nagashybayeva}.  During the last decade, MINT countries have shown various performances by expectations. However, in general, they have faced some economic difficulties, including high inflation and political uncertainty that affect the investment climate ~\citep{Okoroafor}. In addition, according to the literature ~\cite{zhang2021stock,siddiqui2023assessing}, MINT countries as emerging economies may not only have been affected by domestic challenges in this decade, but may also have been influenced by global situations, particularly advanced economies such as the group of seven countries.
+In the early 2010s, four countries attracted the attention of economists with
+their highly promising economies, and a new acronym, MINT: Mexico, Indonesia,
+Nigeria, and T\"{u}rkiye, emerged ~\citep{durotoye2014mint}. When the acronym
+was first suggested by Jim O'Neill, common characteristics of MINT countries
+were (i) geographical positions \textit{(Mexico sits next to the USA and belongs
+to the North American Free Trade Agreement (NAFTA), Indonesia lies at the centre
+of South East Asia, T\"{u}rkiye is connected to both the West and East, while
+Nigeria is on the coast of Africa surrounded by future trading partners)}, (ii)
+large populations \textit{(primarily under 30)}, (iii) rapid economic growth
+potential, (iv) a developing middle class, and (v) high levels of
+entrepreneurship ~\citep{Jim, Newland, Nagashybayeva}. Within the last decade
+the economic performance of MINT countries have been mixed, with some facing
+economic difficulties, including high inflation and political uncertainty that
+affect the investment climate ~\citep{Okoroafor}. As further detailed
+in~\cite{zhang2021stock,siddiqui2023assessing}, MINT countries as emerging
+economies may not only have been affected by domestic challenges in this decade,
+but may also have been influenced by global conjuncture. In particular, the
+policies advanced economies such as the group of seven countries follows have 
+had a huge impact.
 
-The group of seven countries, in other words, G7 countries, comprises the world's largest and most advanced economies, which are Canada, France, Germany, Italy, Japan, the United Kingdom, and the United States. They have a substantial impact on the development of global economic policies and trends.  As of 2023, (i) having the still largest share of the world's gross domestic product (GDP) \textit{(approximately 30\% in 2023, it was more than 43\% in the early 2000s)}, (ii) being an important player in global trade and investment due to multinational corporations, and (iii) having the most liquid and developed financial market centers that influence global capital flows and market dynamics are some of the economic properties of the G7 countries ~\citep{World, United, Statista}. Due to these properties, G7 countries significantly impact emerging economies such as BRICS: Brazil, Russia, India, China, South Africa and MINT by shaping their economic policies, trade relations, and financial markets. Especially, the stock markets of emerging economies are often highly sensitive and closely tied to financial and economic developments in the G7 countries because financial markets are interconnected ~\citep{fratzscher2012capital, rey2015dilemma, acharya2020financial}. Therefore, understanding the links between developed and emerging markets is crucial for investors and policymakers in both. For this purpose, in this study, one of the spatio-temporal graph neural networks (GNN) framework, known as MTGNN, was used to reveal these connections ~\citep{wu2020connecting}. By this method, specifically, the MINT and G7 countries' stock market indices were forecasted more precisely through these interconnections.
+The group of seven developed countries (G7), comprises the world's largest and
+most advanced economies: Canada, France, Germany, Italy, Japan, the
+United Kingdom, and the United States. They have a substantial impact on the
+development of global economic policies and trends.  As of 2023, these countries may be characterized by the following properties: they
+(i) have the largest share of the world's gross domestic product (GDP)
+\textit{(approximately 30\% in 2023, it was more than 43\% in the early 2000s)},
+(ii) are important players in global trade and investment due to
+multinational corporations, and (iii) have the most liquid and developed
+financial market centers that influence global capital flows and market dynamics
+~\citep{World, United,
+Statista}. These properties mean that G7 countries significantly impact emerging
+economies such as BRICS: Brazil, Russia, India, China, South Africa and MINT by
+shaping their economic policies, trade relations, and financial markets.
+The stock markets of emerging economies are often highly sensitive
+and closely tied to financial and economic developments in the G7 countries
+because financial markets are interconnected ~\citep{fratzscher2012capital,
+rey2015dilemma, acharya2020financial}. It is of utmost required that
+investors and policymakers understand and interpret the links between developed
+and emerging markets. Our goal in this study is to meet this need using the 
+framework of spatio-temporal graph neural networks (GNN). In particular, we
+employ a particular spatio-temporal GNN instance, MTGNN,  to reveal these
+connections~\citep{wu2020connecting} and use them to produce very accurate 
+price predictions for both the MINT and G7 stock markets.
 
-Our study contributes to the current literature in a few important ways. First, the study introduces a new approach using spatio-temporal GNN for economic blocks that considers them as a graph-network structure. Second, the study demonstrates how spatio-temporal GNN effectively capture complex and unknown interdependencies between economic blocks, in terms of their stock market indices. Thirdly, leveraging the graph structure of stock indices and their interconnections, the study presents an improvement in prediction accuracy and robustness over some traditional, hybrid, and recent deep-learning approaches. For this reason, we metaphorically used the phrases of ``stock market telepathy'' and ``predicting secret conversations'' in the title to highlight GNN's ability to anticipate stock market movements and interdependencies with excellent accuracy.
+Our study contributes to the current literature in a few important ways. First,
+this study proposes to view the stock market indices of MINT and G7 countries 
+as an interconnected network, modeled by an underlying graph structure that 
+can be learned from historical data.
+Second, this study demonstrates how spatio-temporal GNN can be used to 
+effectively  capture complex and unknown interdependencies between economic
+blocks, in terms of their stock market indices. Third, leveraging the graph
+structure of stock indices and their interconnections, the study shows that 
+prediction accuracy and robustness can be significantly improved over
+traditional, hybrid, and the more-recent deep-learning approaches.
 
-As it is known, accurate stock price forecasting is a critical activity that supports decision-making across multiple domains, ensuring better financial outcomes and contributing to the stability and growth of the global economy. From this point of view, in addition to the contributing ways in the above, the study becomes significant when MINT countries' development could significantly impact international trade and economics in the years ahead, and the G7 countries' leadership will pursue, as well. In particular, understanding MINT countries' stock markets and seeing their predictability means both information about alternative investment destinations and the opportunity to create a portfolio with data on the functioning of the markets.
+Accurate stock price forecasting is critical to support decision-making across
+multiple domains, ensuring better financial outcomes and contributing to the
+stability and growth of the global economy. The significance of this study can
+be better appreciated by considering how it can be used to create lucrative
+portfolios while taking into account the interconnectedness of the stock markets
+of MINT and G7 countries. 
 
-The rest of the paper is organized as follows: Section 2 reviews the existing literature about methods of stock price prediction. Section 3 discusses the data and its properties. Section 4 provides a short review of spatio-temporal GNN methodology specific to MTGNN, and Section 5 presents empirical results. Finally, Section 6 addresses some conclusions with directions for future research.
+The rest of the paper is organized as follows: Section 2 reviews the existing
+literature about methods of stock price prediction. Section 3 discusses the data
+and its properties. Section 4 provides a short review of spatio-temporal GNN
+methodology, in particular that of MTGNN, and Section 5 presents empirical
+results. Finally, Section 6 provides the conclusions with directions for
+future research.
