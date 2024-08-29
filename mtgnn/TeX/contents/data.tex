@@ -1,17 +1,49 @@
 \section{Data}
 \label{sec:data}
-In the study, the main stock market indices were selected to represent the stock market indices of MINT and G7 countries. As can seen from Table~\ref{tab:variable}, FTSE MIB index for Italy, BIST 100 index for Turkiye, CAC 40 index for France, FTSE 100 index for UK, DAX PERFORMANCE index for Germany, S\&P 500 index for USA, S\&P/TSX index for Canada, IDX COMPOSITE index for Indonesia, IPC MEXICO index for Mexico, NIKKEI 225 index for Japan, and lastly NSE 30 index for Nigeria were chosen.  
+%
+We have selected the main stock market indices to represent the stock market
+performances of MINT and G7 countries. These indices are summarized in 
+Table~\ref{tab:variable}: FTSE MIB index for Italy, BIST 100 index for
+T\"{u}rkiye, CAC 40 index for France, FTSE 100 index for UK, DAX PERFORMANCE
+index for Germany, S\&P 500 index for USA, S\&P/TSX index for Canada, IDX
+COMPOSITE index for Indonesia, IPC MEXICO index for Mexico, NIKKEI 225 index for
+Japan, and lastly NSE 30 index for Nigeria.  
 
-To perform data analysis, we used daily closing prices for the indices accessed from https://finance.yahoo.com/ and https://www.investing.com. The data were collected from January 30, 2012 to August 14, 2024. The unavailability of old values of NSE 30 index was effective in the selection of this date range. After gathering data, the BIST 100 index was adjusted before the analysis because it reached 100,000 points on June 13, 2017, and two zeros were removed from the index as of July 27, 2020. For this reason, before July 27, 2020, we divided all values by 100 for BIST 100 index. 
+The data we analyzed was the daily closing prices for the indices collected from
+January 30, 2012 to August 14, 2024, accessed from Yahoo
+Finance(~\cite{yfinance}) and Investing(~\cite{investing}). 
+This date range was selected because the daily values of the Nigerian index NSE
+30 is only avalaible from January 30, 2012. Further, the values of the BIST 100
+index have been adjusted to reflect the change executed on July 27, 2020. This 
+change removed two zeros from the values of the index on that date. Therefore, 
+we divided the data preceding this date by 100 to adjust for this change. 
 
-When the descriptive statistics in Table~\ref{tab:descriptive} evaluated, even all indices ara non-normal, it is noteworthy that the BIST 100 and NSE 30 indices, which belong to MINT countries, are most positively skewed and leptokurtic.
+Table~\ref{tab:descriptive} depicts the descriptive statistics of the data. It
+can be observed that all indices are non-normal, with the BIST 100 and NSE 30
+(stock indices of members of MINT countries) indices being the most positively
+skewed and leptokurtic.
 
-All stock market indices values during that time were drawn in Figure~\ref{fig:alldata} for each country. According to Figure~\ref{fig:alldata}, although some dates are different, stock market movements seem generally similar because of the wide range of the y-axis. The decline in all of them, especially during the Covid period, is striking.
+Figure~\ref{fig:cor2} summarizes the relationships between the indices according
+to the Spearman correlation analysis. Among MINT countries, the least correlated
+stock was Nigeria's, followed by Mexico, T\"{u}rkiye, and Indonesia.
 
-In addition to all data summaries, Spearman correlation analysis was also applied to indices to examine their relations between themselves. According to Figure~\ref{fig:cor2},  among MINT countries, Nigeria’s stock index was found to be least correlated with the other countries' indices, Mexico's index was second least correlated, and T\"{u}rkiye’s and Indonesia’s were most related. Nonetheless, because the dataset has time-dependent relationships, to use more appropriate method, dynamic time warping (DTW) was also used besides the Spearman correlation analysis. DTW is a robust approach to determine the distance which can be thought of as similarity measure between two time series, which may vary in time. The primary concept of DTW is to calculate the distance by comparing corresponding items in time series that are similar ~\citep{dynamic}. Unlike traditional distance measures, such as Euclidean distance, DTW can handle shifts and distortions in the time axis and calculates a cumulative distance by considering the minimum distance path through the cost matrix ~\citep{muller2007dynamic}. Lower DTW distances, generally close to 0 ones, indicate that the two time series are more similar. Thus, we can say according to Figure~\ref{fig:dist2}, except for the UK's and Indonesia's indices, most indices were very similar to the other countries' indices during the 12-year span.
+Spearman correlation analysis does not take into account the time-dependent 
+relationships between the indices. A more appropriate method to analyze the
+time-dependent relationships is dynamic time warping (DTW).  DTW is a robust
+approach to determine a measure of distance which can be interpreted as a
+measure of similarity between two time series, which may vary with time. The
+primary concept of DTW is to calculate the distance by comparing corresponding
+items in time series that are similar~\citep{dynamic}. Unlike traditional
+distance measures, such as Euclidean distance, DTW can handle shifts and
+distortions in the time axis and calculates a cumulative distance by considering
+the minimum distance path through the cost matrix~\citep{muller2007dynamic}.
+Lower DTW distances (close to $0$) indicate that the two time
+series are more similar. Figure~\ref{fig:dist2} hence suggests that almost all 
+indices show similarity to each other save for the interplay between UK and
+Indonesia.
 
 \begin{table*}
-    \caption{Variable explanations.}
+    \caption{The variables are the main stock indices of MINT and G7 countries.}
       \label{tab:variable}
       \centering
     \scalebox{0.9}{
@@ -34,7 +66,7 @@ NSE 30   &Price performance of 30 companies on the Nigerian Stock Exchange \\ \b
 \end{table*}
 
 \begin{table*}
-    \caption{Descriptive statistics.}
+    \caption{Descriptive statistics for the main stock indices.}
     \label{tab:descriptive}
     \centering
     \scalebox{0.92}{
