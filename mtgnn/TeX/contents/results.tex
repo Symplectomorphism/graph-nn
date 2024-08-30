@@ -1,9 +1,15 @@
 \section{Results and Discussion}
 \label{sec:results}
-In this section we presented the findings derived from applying MTGNN, and other baseline forecasting methods. Before starting analyses, all historical data values were transformed to natural logarithm. The initial $60\%$ of 
-the dataset used for training the models, the subsequent $20\%$ of the data was used for validation and the last $20\%$ of the data, starting from January 2022 and ending on August 14, 2024 were used for testing purposes.
-
-All the hyperparameters of the MTGNN used to obtain the results are summarized in Table~\ref{tab:hyperparams}. 
+%
+This section presents the results of the experiments conducted to evaluate the
+performance of the MTGNN in forecasting the stock indices of MINT and G7
+countries. The performance of the MTGNN is compared with the performances of the
+AR, VAR-MLP, RNN-GRU, and TCN models. The results are presented in terms of the
+RSE, RMSE, MAE, and MAPE evaluation metrics. The best results are bolded, and
+the second-best results are underlined in Table~\ref{tab:comparison}.
+%
+The hyperparameters of MTGNN used to obtain the results are summarized
+in Table~\ref{tab:hyperparams}. 
 
 \begin{table}[bt]
     \caption{The hyperparameters of the MTGNN used to train and infer the forecasts.}
@@ -25,19 +31,40 @@ All the hyperparameters of the MTGNN used to obtain the results are summarized i
 \end{table}
 %
 
-Once the MTGNN training phase was performed, the constructed graph was shown in Figure~\ref{fig:graph}. In the graph, each node represents the countries' stock indices, and each edge represents the link between them.
-In this study, we used a convolutional graph network with depth $2$. This means that each node had their feature vector updated by considering the current information 
-residing in its $2$-hop neighborhood \textit{(i.e., its neighbors and the neighbors of its neighbors)}.
-The constructed graph should be understood in the sense that 2-hop neighbors have a direct effect 
-on the outcome of each node, and others may only have an indirect effect in predicting the future 
-values of a particular node. Notice that this graph is constructed by performing and end-to-end 
-stochastic gradient descent (more precisely, the Adam optimizer), on the losses accrued between 
-the predicted and the actual values. This means that by no means do we claim that the constructed 
-graph in Figure~\ref{fig:graph}, is a causal one. It is the graph that the optimization has 
-constructed such that the resulting loss is minimized. 
+After training on the first $60\%$ of the data as shown in
+Figure~\ref{fig:alldata}, MTGNN produces the underlying graph structure that
+minimizes the $\ell_1$ loss as in Figure~\ref{fig:graph}. Recall that, each node
+of this graph represents the stock index of a country, and each edge represents
+a link between a pair of stock indices. As shown in Table~\ref{tab:hyperparams},
+the depth of the graph convolutions is selected to be $2$. This means
+that each node had their feature vector updated by considering the current
+information residing in its $2$-hop neighborhood \textit{(i.e., its neighbors
+and the neighbors of its neighbors)}. The constructed graph in
+Figure~\ref{fig:graph} may be interpreted up to 2-hop neighbors have a direct
+effect on the outcome of each node, while the remaining nodes (variables) only
+have an indirect effect in predicting the future values of a particular node.
+Notice that this graph is constructed by performing and end-to-end stochastic
+gradient descent (more precisely, the Adam optimizer), on the losses accrued
+between the predicted and the actual values. This means that by no means do we
+claim that the constructed graph in Figure~\ref{fig:graph}, is a causal one. It
+is the graph that the optimization has constructed such that the resulting loss
+is minimized. 
 
-The adjacency matrix, corresponding to 
-the graph in Figure~\ref{fig:graph} is given by \textbf{A}. The matrix provides a visual representation of the connections and their strengths between the countries' stock indices. Zeros in the matrix demonstrate no connection between them. According to the adjacency matrix and Figure~\ref{fig:graph}, when we only consider 1-hop neighborhoods, among G7 countries, the US's \textit{(with 7 out-degree connections)}, Germany's and Canada's \textit{(with 5 out-degree connections)} stock indices and among MINT countries, Indonesia's \textit{(with 7 out-degree connections)} and T\"{u}rkiye's \textit{(with 6 out-degree connections)} stock indices are the most influential ones in the forecasting process. If we consider 2-hop neighborhoods as determined, according to the $\bm{A}^2$ matrix, among G7 countries, the US's \textit{(with 39 out-degree connections)} and Canada's \textit{(with 34 out-degree connections)} stock indices, and among MINT countries, Indonesia's \textit{(with 31 out-degree connections)} and T\"{u}rkiye's \textit{(with 25 out-degree connections)} stock indices are the most influential ones in the forecasting process.
+The adjacency matrix, corresponding to the graph in Figure~\ref{fig:graph} is
+given by \textbf{A} in equation~\eqref{eq:adjacency}. One may observe the 
+strength of the connections (edges) between pairs of stock indices by examining
+this matrix. Performing sums over the columns of the adjacency
+matrix~\eqref{eq:adjacency} reveals that if only $1$-hop neighborhoods are
+considered, the US, Germany, and Canada are the most influential stock indices
+among G7 countries with $7$, $5$, and $5$ out-degree connections, respectively.
+Among MINT countries, Indonesia and T\"{u}rkiye are the most influential stock
+indices with $7$ and $6$ out-degree connections, respectively. Similarly, the
+out-degrees of the $2$-hop neighborhoods may be computed by considering the
+column sums of the matrix $\bm{A} + \bm{A}^2$. In this case, the US and Canada
+are the most influential stock indices among G7 countries with $39$
+and $34$ out-degree connections, respectively. Among MINT countries, Indonesia
+and T\"{u}rkiye are the most influential stock indices with $31$ and $25$
+out-degree connections, respectively. 
 
 \setcounter{MaxMatrixCols}{11}
 %
@@ -56,6 +83,7 @@ the graph in Figure~\ref{fig:graph} is given by \textbf{A}. The matrix provides 
 0 & 0.81 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\
 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0
 \end{bmatrix}
+\label{eq:adjacency}
 \end{equation}
 \normalsize
 %
@@ -69,12 +97,20 @@ the graph in Figure~\ref{fig:graph} is given by \textbf{A}. The matrix provides 
 \end{figure}
 
 
-The results in Table~\ref{tab:comparison} show that the performance of the MTGNN is excellent across 
-all the stock indices of MINT and G7 countries that we considered, with RSE, RMSE, MAE, and MAPE evaluation metrics. When evaluating the second-best results in Table~\ref{tab:comparison}, it is obvious that on contrary to MTGNN, the other deep-learning methods RNN-GRU \textit{(second-best model for 2 countries' indices - Italy, Germany)} and TCN \textit{(second-best model for 3 countries' indices - T\"{u}rkiye, Japan, Nigeria)}, are not as successful as VAR-MLP \textit{(second-best model for 5 countries' indices - France, US, Canada, Indonesia, Mexico)}.
+Table~\ref{tab:comparison} provides the comparison of the various performance
+metrics~\ref{ssec:metric} over all the algorithms we considered in this work. It
+can be observed that MTGNN is excellent across all the stock indices. The table
+shows that the second-best results vary across the board. While RNN-GRU achieves
+this honor for the indices of two countries (Italy and Germany), TCN is the
+second-best model for three countries (T\"{u}rkiye, Japan, and Nigeria) and
+VAR-MLP is the second-best model for five countries (France, US, Canada,
+Indonesia, and Mexico). 
 
-We also have provided a plot of the predictions of the MTGNN, as it is applied to the dataset we set out 
-to test the trained parameters (see Figure~\ref{fig:predictions}).  The plots in Figure~\ref{fig:predictions} visually show the 
-performance of the MTGNN in predicting the closing prices of each country's stock indices in this test data date range. The performance of the MTGNN is not only satisfactory in terms of its RSE, RMSE, MAE, and MAPE performances, but is also visually pleasing, as can be observed by perusing each plot in the figure. 
+For completeness, we have provided a plot of the MTGNN's predictions of all the
+stock indices for the test dataset in Figure~\ref{fig:predictions}. The
+performance of the MTGNN is not only satisfactory in terms of its RSE, RMSE,
+MAE, and MAPE performances, but is also visually pleasing, as can be observed by
+perusing each plot in the figure. 
 
 \begin{rem}
 The MTGNN algorithm normalizes the data by subtracting from each column its individual mean and dividing by its individual standard deviation. All data transformations \textit{(natural logarithm and normalization)} are inverted for the construction of the plots in Figure~\ref{fig:predictions}.

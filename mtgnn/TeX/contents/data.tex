@@ -91,18 +91,24 @@ NSE 30      & Investing        & 4580       & 1635          & 1579            & 
 \begin{figure*}
     \centering
     \includegraphics[width=1.0\textwidth]{./figures/alldata.eps}
-    \caption{Daily closing price of the stock indices.}
+    \caption{Full glimpse at the processed data: daily closing price of the stock indices.}
     \label{fig:alldata}
 \end{figure*}
 
 \begin{figure}[tbh]
   \includegraphics[width=0.47\textwidth]{./figures/cor2.eps}
-  \caption{Correlation matrix.} 
+  \caption{Correlation matrix produced by Spearman correlation analysis.} 
   \label{fig:cor2}
 \end{figure}
 
 \begin{figure}[tbh]
   \includegraphics[width=0.47\textwidth]{./figures/dist2.eps}
-  \caption{Distance matrix.} 
+  \caption{Distance matrix produced by dynamic time warping analysis.} 
   \label{fig:dist2}
 \end{figure}
+
+The full data may be observed in Figure~\ref{fig:alldata}. The deep learning 
+methods we consider in this work was trained on the initial $60\%$ of the data, 
+validated on the next $20\%$, and tested on the final $20\%$ as depicted in this
+figure. The data was normalized after getting mapped through a natural logarithm
+function to have zero mean and unit variance before training the models.

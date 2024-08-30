@@ -56,6 +56,9 @@ As a reminder, formal definitions of most important graph theory concepts are pr
     and only if there is an edge pointing from $v_i$ to $v_j$. All other entries are set to zero.
 \end{defn}
 
+In MTGNN, each variable in a multivariate time series data is represented as 
+a node in a graph. The edges in the graph represent how the information flows between the nodes.
+
 \subsubsection{MTGNN Model Architecture}
 
 We borrow the MTGNN model from~\cite{wu2020connecting}. In this subsection, we briefly touch upon the 
@@ -94,13 +97,54 @@ while the rest are neural-network-based methods: autoregressive-multilayer perce
 recurrent neural network (RNN-GRU) and temporal convolutional network (TCN).
 
 
-An autoregressive model assumes that the current value of a time series is a function of its past values. In other words, AR model is when a value from a time series is regressed on previous values from that same time series. In this regression model, the response variable in the previous time period has become the predictor and the errors have usual assumptions about errors in a simple linear regression model. The order of an autoregression is the number of immediately preceding values in the series that are used to predict the value at the present time ~\citep{penn}. 
+An autoregressive model assumes that the current value of a time series is a
+function of its past values. In other words, an AR model regresses on a value
+from a time series using the previous values of that same time series. In this
+regression model, the response variable in the previous time period has become
+the predictor and the errors have usual assumptions about errors in a simple
+linear regression model. The order of an autoregression is the number of
+immediately preceding values in the series that are used to predict the value at
+the present time~\citep{penn}. 
 
-The vector autoregressive (VAR) model is a well-known statistical model used to capture linear interdependencies among multiple time series. It has been widely applied in econometrics for modeling and forecasting systems where multiple variables influence each other over time ~\citep{lutkepohl2005new}. However, VAR models assume linear relationships, which can be limiting in cases where the underlying data exhibits complex, nonlinear dynamics. To address this limitation, the VAR-MLP model incorporates the MLP, a type of artificial neural network known for its ability to learn and approximate nonlinear functions. By combining VAR with MLP, the VAR-MLP model leverages the strengths of both methods: it captures the linear interdependencies among multiple time series using VAR, while the MLP component models the potential nonlinear relationships that VAR cannot. This hybrid approach allows for more accurate modeling and forecasting in systems where both linear and nonlinear interactions are significant, as demonstrated in empirical studies across various domains, including finance and economics ~\citep{zhang2003time, zivot2006modeling}. The flexibility of VAR-MLP makes it particularly effective in complex systems where traditional linear models may fall short, thus providing a comprehensive framework for time series analysis. 
+The vector autoregressive (VAR) model is a well-known statistical model used to
+capture linear interdependencies among multivariate time series. It has been
+widely applied in econometrics for modeling and forecasting systems where
+multiple variables influence each other over time ~\citep{lutkepohl2005new}.
+VAR models assume linear relationships, which can be limiting in cases
+where the underlying data exhibits complex, nonlinear dynamics. To address this
+limitation, the VAR-MLP model extends the original VAR using a multilayer perceptron (MLP), which is able to learn to approximate nonlinear functions. By
+combining VAR with MLP, the VAR-MLP model leverages the strengths of both
+methods: it captures the linear interdependencies among multiple time series
+using VAR, while the MLP component models the potential nonlinear relationships.
+This hybrid approach allows for more accurate modeling and
+forecasting in systems where both linear and nonlinear interactions are
+significant, as demonstrated in empirical studies across various domains,
+including finance and economics ~\citep{zhang2003time, zivot2006modeling}. 
 
-RNNs are a class of neural networks designed to handle sequential data by maintaining a hidden state that captures information from previous inputs ~\citep{hochreiter1997long}. However, RNNs suffer from issues like vanishing gradients, which limit their ability to learn long-term dependencies. To address this, the Gated Recurrent Unit (GRU) was introduced as an improved variant of the RNN ~\citep{cho2014learning}. The GRU uses gating mechanisms—namely, an update gate and a reset gate—to control the flow of information, making it more efficient at capturing dependencies over longer sequences while reducing the complexity ~\citep{chung2014empirical}. This innovation allows GRUs to perform better than traditional RNNs in various sequential modeling tasks by mitigating the vanishing gradient problem and simplifying the model structure.
+RNNs are a class of neural networks designed to handle sequential data by
+maintaining a hidden state that captures information from previous inputs
+~\citep{hochreiter1997long}. Vanilla RNNs suffer heavily from the vanishing
+gradient problem, limiting their ability to learn long-term dependencies. To
+address this, RNNs were equipped with Gated Recurrent Units (GRU)
+in~\citep{cho2014learning}. The GRU uses gating mechanisms to control the flow
+of information, making it more effective at capturing dependencies over longer
+sequences~\citep{chung2014empirical}. 
 
-TCNs are a type of neural network architecture designed for sequence modeling tasks, offering an alternative to Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks. TCNs leverage the strengths of convolutional neural networks (CNNs) by using 1D convolutions to process sequential data, enabling them to capture temporal dependencies over long sequences efficiently. Unlike RNNs, TCNs do not suffer from issues like vanishing gradients and can handle much longer input sequences due to their ability to employ dilated convolutions, which exponentially increase the receptive field of the network without a corresponding increase in computational cost ~\citep{bai2018empirical}. Additionally, TCNs use causal convolutions, ensuring that the output at any time step is only influenced by past inputs, maintaining the temporal order of the data ~\citep{oord2016wavenet}. This structure allows TCNs to outperform traditional RNNs and LSTMs in various tasks, such as time series forecasting, due to their stable training dynamics and ability to capture long-range dependencies ~\citep{bai2018empirical}.
+TCN is a type of neural network architecture designed for sequence modeling
+tasks. They transfer the strengths of convolutional neural networks (CNNs) to
+learn good representations in image processing to time series by
+performing 1D convolutions to process sequential data. This mechanism helps TCNs
+capture temporal dependencies over long sequences efficiently. Unlike RNNs, TCNs
+do not suffer from vanishing gradients and can handle much longer
+input sequences by employing dilated convolutions, which
+exponentially increase the receptive field of the network without a
+corresponding increase in computational cost~\citep{bai2018empirical}.
+The convolutions of TCNs are causal, ensuring that the output at any time
+step is only influenced by past inputs, maintaining the temporal order of the
+data~\citep{oord2016wavenet}. TCNs have been strong competitors of RNNs with
+long-short term memory (LSTMs) or GRUs in various tasks, including time series
+forecasting, due to their stable training dynamics and ability to capture
+long-range dependencies~\citep{bai2018empirical}.
 
 \subsection{Evaluation metrics}
 \label{ssec:metric}
